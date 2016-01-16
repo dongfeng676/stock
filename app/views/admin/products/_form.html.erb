@@ -1,0 +1,64 @@
+<%= form_for([:admin,@product],html: {class: "form-horizontal", role: "form", multipart: true}) do |f| %>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">产品名称:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :name,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">类别:</label>
+    <div class="col-sm-4">
+      <%= f.select :sub_category_id, SubCategory.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">热门类别:</label>
+    <div class="col-sm-4">
+      <%= f.select :hot_category_id, HotCategory.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">状态:</label>
+    <div class="col-sm-4">
+      <%= f.select :state, [["上架",0],["下架",1]],{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">单位:</label>
+    <div class="col-sm-4">
+      <%= f.select :unit_id, Unit.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+    </div>
+  </div> 
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">图片:</label>
+    <div class="col-sm-4">
+      <%= f.file_field :image,:multiple=>true,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">库存数量:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :stock_num,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">价格:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :price,class:"form-control"%>
+    </div>
+  </div>
+    <div class ="form-group">
+    <label class="col-sm-2 control-label">原始价格:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :old_price,class:"form-control"%>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button calss="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-floppy-save">保存</span>
+      </button>
+    </div>
+  </div>
+<% end %>

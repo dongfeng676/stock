@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114123223) do
+ActiveRecord::Schema.define(version: 20160116033737) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "province",   limit: 255
@@ -26,13 +26,17 @@ ActiveRecord::Schema.define(version: 20160114123223) do
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "adverts", force: :cascade do |t|
-    t.string   "ads_image",  limit: 255
-    t.integer  "product_id", limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "ads_image",       limit: 255
+    t.integer  "product_id",      limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "sub_categroy_id", limit: 4
+    t.integer  "sub_category_id", limit: 4
   end
 
   add_index "adverts", ["product_id"], name: "index_adverts_on_product_id", using: :btree
+  add_index "adverts", ["sub_category_id"], name: "index_adverts_on_sub_category_id", using: :btree
+  add_index "adverts", ["sub_categroy_id"], name: "index_adverts_on_sub_categroy_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -49,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160114123223) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.string   "url",         limit: 255
+    t.string   "image",       limit: 255
     t.string   "target_type", limit: 255
     t.integer  "target_id",   limit: 4
     t.datetime "created_at",              null: false
@@ -76,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160114123223) do
     t.string   "name",            limit: 255
     t.integer  "state",           limit: 4
     t.string   "image",           limit: 255
-    t.string   "unit",            limit: 255
+    t.string   "unit_id",         limit: 255
     t.integer  "stock_num",       limit: 4
     t.float    "price",           limit: 24
     t.float    "old_price",       limit: 24
@@ -88,6 +92,7 @@ ActiveRecord::Schema.define(version: 20160114123223) do
 
   add_index "products", ["hot_category_id"], name: "index_products_on_hot_category_id", using: :btree
   add_index "products", ["sub_category_id"], name: "index_products_on_sub_category_id", using: :btree
+  add_index "products", ["unit_id"], name: "index_products_on_unit_id", using: :btree
 
   create_table "sub_categories", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -98,6 +103,12 @@ ActiveRecord::Schema.define(version: 20160114123223) do
   end
 
   add_index "sub_categories", ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
+
+  create_table "units", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "user_id",        limit: 255

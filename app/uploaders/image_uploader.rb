@@ -1,11 +1,15 @@
+# encoding: utf-8
+
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-   include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
+  storage :qiniu
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -13,18 +17,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
   def convert_to_nice_date
     model.created_at.strftime("%Y/%m/%d")
   end
-
-  
 
   def extension_white_list
      %w(jpg jpeg gif png)
@@ -38,4 +33,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     var = :"@#{mounted_as}_timestamp"
     model.instance_variable_get(var) or model.instance_variable_set(var, Time.now.to_i)
   end
+
+
+
 end

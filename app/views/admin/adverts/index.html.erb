@@ -1,0 +1,43 @@
+<% content_for :title do %>
+  广告列表
+<% end %>
+<h2 class="col-sm-offset-5">
+   <a href = "/admin">广告列表</a>
+</h2>
+<div class="container">
+  <%= link_to '广告列表', new_admin_advert_path, class: ' btn btn-success'%>
+  <% if @adverts.present? %>
+    <div class = "panel panel-default">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>id</th>
+            <!-- <th>类别名称</th> -->
+            <th>产品名称</th>
+            <th>图片</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @adverts.each do |advert|%>
+            <tr>
+              <td class="col-sm-2"><%=advert.id%></td>
+             <!--  <td class="col-sm-2"><%#=advert.sub_category.name%></td> -->
+              <td class="col-sm-2"><%=advert.product.name%></td>
+              <td class="col-sm-2"><%=link_to "图片",admin_advert_path(advert)%></td>
+              <td class="col-sm-2">
+               <%= link_to '修改',edit_admin_advert_path(advert)%>|
+               <%= link_to '删除', admin_advert_path(advert), method: :delete, data: { confirm: '确定要删除吗？' }%> 
+              </td>
+            </tr>
+          <% end %>
+          
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="col-sm-offset-2">
+      <h2>赶快来添加吧！</h2>
+    </div>
+  <% end %>
+</div>

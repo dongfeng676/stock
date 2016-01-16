@@ -1,0 +1,8 @@
+<div class="col-sm-offset-3">
+  <h2>显示产品图片</h2>
+</div>
+<div class = "panel panel-default">
+  <%@product.images.each do |image|%>
+    <%=image_tag image.image.url,size:"400x400"%>
+  <% end %>
+<div>

@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  单位列表
+<% end %>
+<h2 class="col-sm-offset-5">
+   <a href = "/admin">单位列表</a>
+</h2>
+<div class="container">
+  <%= link_to '添加单位', new_admin_unit_path, class: ' btn btn-success'%>
+  <% if @units.present? %>
+    <div class = "panel panel-default">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @units.each do |unit|%>
+            <tr>
+              <td class="col-sm-2"><%=unit.id%></td>
+              <td class="col-sm-2"><%=unit.name%></td>
+              <td class="col-sm-2">
+               <%= link_to '修改',edit_admin_unit_path(unit)%>|
+               <%= link_to '删除', admin_unit_path(unit), method: :delete, data: { confirm: '确定要删除吗？' }%> 
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="col-sm-offset-2">
+      <h2>赶快来添加吧！</h2>
+    </div>
+  <% end %>
+</div>

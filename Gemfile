@@ -47,8 +47,9 @@ group :development do
 end
 
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'mini_magick'
 gem 'passenger'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'carrierwave-qiniu','~> 0.2.0'
+gem "mini_magick"
 
