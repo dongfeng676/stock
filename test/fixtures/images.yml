@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  target_type: MyString
+  target_id: 1
+
+two:
+  url: MyString
+  target_type: MyString
+  target_id: 1

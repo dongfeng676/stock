@@ -1,0 +1,44 @@
+<% content_for :title do %>
+  地址列表
+<% end %>
+<h2 class="col-sm-offset-5">
+   <a href = "/admin">地址列表</a>
+</h2>
+<div class="container">
+  <% if @address.present? %>
+    <div class = "panel panel-default">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>user_id</th>
+            <th>province</th>
+            <th>city</th>
+            <th>region</th>
+            <th>detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @address.each do |add|%>
+            <tr>
+              <td class="col-sm-2"><%=add.id%></td>
+              <% if add.user.present? %>
+                <td class="col-sm-2"><%=add.user.user_id%></td>
+              <% else %>
+                <td class="col-sm-2">无</td>
+              <% end %>
+              <td class="col-sm-2"><%=add.province%></td>
+              <td class="col-sm-2"><%=add.city%></td>
+              <td class="col-sm-2"><%=add.region%></td>
+              <td class="col-sm-2"><%=add.detail%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="col-sm-offset-2">
+      <h2>暂无</h2>
+    </div>
+  <% end %>
+</div>

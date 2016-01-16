@@ -1,0 +1,51 @@
+<% content_for :title do %>
+  用户列表
+<% end %>
+<h2 class="col-sm-offset-5">
+   <a href = "/admin">用户列表</a>
+</h2>
+<div class="container">
+  <% if @users.present? %>
+    <div class = "panel panel-default">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>user_id</th>
+            <th>user_name</th>
+            <th>head_portrait</th>
+            <th>identification</th>
+            <th>token</th>
+            <th>address</th>
+            <th>phone_num</th>
+            <th>register_time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user|%>
+            <tr>
+              <td class="col-sm-2"><%=user.id%></td>
+              <td class="col-sm-2"><%=user.user_id%></td>
+              <td class="col-sm-2"><%=user.user_name%></td>
+              <td class="col-sm-2"><%=image_tag user.head_portrait%></td>
+              <%if user.identification == "0"%>
+                <td class="col-sm-2">未认证</td>
+              <%else %>
+                <td class="col-sm-2">认证</td>
+              <% end %>
+              <td class="col-sm-2"><%=user.token%></td>
+              <td class="col-sm-2"></td>
+              <td class="col-sm-2"><%=user.phone_num%></td>
+              <td class="col-sm-2"><%=user.created_at%></td>
+              <td class="col-sm-2"><%=user.rand%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="col-sm-offset-2">
+      <h2>暂无</h2>
+    </div>
+  <% end %>
+</div>

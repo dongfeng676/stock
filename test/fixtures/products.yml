@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  state: 1
+  image: MyString
+  unit: MyString
+  stock_num: 1
+  price: 1.5
+  old_price: 1.5
+  sub_category_id: 
+  hot_category_id: 
+
+two:
+  name: MyString
+  state: 1
+  image: MyString
+  unit: MyString
+  stock_num: 1
+  price: 1.5
+  old_price: 1.5
+  sub_category_id: 
+  hot_category_id: 

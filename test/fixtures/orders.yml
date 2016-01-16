@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  state: 1
+  phone_num: MyString
+  receive_name: MyString
+  delivery_time: 2016-01-14 20:19:14
+  complete_time: 2016-01-14 20:19:14
+  products: MyString
+  address_id: 
+  user_id: 
+
+two:
+  state: 1
+  phone_num: MyString
+  receive_name: MyString
+  delivery_time: 2016-01-14 20:19:14
+  complete_time: 2016-01-14 20:19:14
+  products: MyString
+  address_id: 
+  user_id: 
