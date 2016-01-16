@@ -1,5 +1,5 @@
-class Admin::SubCategoriesController < ApplicationController
-  layout 'admin/layouts/application'
+class Admin::SubCategoriesController < Admin::BaseController
+
   before_action :set_sub_category,only:[:edit,:update,:destroy]
   
   def index

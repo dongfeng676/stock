@@ -1,5 +1,5 @@
-class Admin::AdvertsController < ApplicationController
-  layout 'admin/layouts/application'
+class Admin::AdvertsController < Admin::BaseController
+  
   before_action :set_advert,only:[:edit,:update,:destroy,:show]
   
   def index

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116033737) do
+ActiveRecord::Schema.define(version: 20160116104224) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "province",   limit: 255
@@ -30,13 +30,11 @@ ActiveRecord::Schema.define(version: 20160116033737) do
     t.integer  "product_id",      limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "sub_categroy_id", limit: 4
     t.integer  "sub_category_id", limit: 4
   end
 
   add_index "adverts", ["product_id"], name: "index_adverts_on_product_id", using: :btree
   add_index "adverts", ["sub_category_id"], name: "index_adverts_on_sub_category_id", using: :btree
-  add_index "adverts", ["sub_categroy_id"], name: "index_adverts_on_sub_categroy_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -121,7 +119,11 @@ ActiveRecord::Schema.define(version: 20160116033737) do
     t.string   "rand",           limit: 255
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "address_id",     limit: 4
+    t.datetime "register_time"
   end
+
+  add_index "users", ["address_id"], name: "index_users_on_address_id", using: :btree
 
   add_foreign_key "addresses", "users"
   add_foreign_key "adverts", "products"

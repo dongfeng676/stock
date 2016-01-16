@@ -1,0 +1,57 @@
+<%= form_for([:admin,@user],html: {class: "form-horizontal", role: "form", multipart: true}) do |f| %>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">用户名:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :user_name,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">图片:</label>
+    <div class="col-sm-4">
+      <%= f.file_field :image,:multiple=>true,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">状态:</label>
+    <div class="col-sm-4">
+      <%= f.select :identification, [["未认证",0],["认证",1]],{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">电话:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :phone_num,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">状态:</label>
+    <div class="col-sm-4">
+      <%= f.select :rand, user_rand,{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">注册时间:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :register_time,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">地址:</label>
+    <div class="col-sm-4">
+      <%= f.select :address_id, address_info,{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button calss="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-floppy-save">保存</span>
+      </button>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $("#user_register_time").datepicker({
+    changeMonth: true,
+    changeYear: true
+  });
+</script>

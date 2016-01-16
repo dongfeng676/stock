@@ -1,6 +1,5 @@
-class Admin::HotCategoriesController < ApplicationController
+class Admin::HotCategoriesController < Admin::BaseController
 
-  layout 'admin/layouts/application'
   before_action :set_hot_category,only:[:edit,:update,:destroy]
   
   def index

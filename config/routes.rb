@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :hot_categories
     resources :users
     resources :products
-    resources :address
+    resources :addresses
     resources :orders
     resources :units
     resources :adverts

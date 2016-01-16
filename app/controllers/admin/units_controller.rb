@@ -1,5 +1,5 @@
-class Admin::UnitsController < ApplicationController
-  layout 'admin/layouts/application'
+class Admin::UnitsController < Admin::BaseController
+
   before_action :set_unit,only:[:edit,:update,:destroy]
   
   def index

@@ -1,0 +1,61 @@
+<%= form_for([:admin,@order],html: {class: "form-horizontal", role: "form", multipart: true}) do |f| %>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">用户:</label>
+    <div class="col-sm-4">
+      <%= f.select :user_id, User.all.collect{|t| [t.user_name,t.id]},{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">状态:</label>
+    <div class="col-sm-4">
+      <%= f.select :state, order_state,{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">电话:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :phone_num,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">收货人名称:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :receive_name,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">发货时间:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :delivery_time,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">完成时间:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :complete_time,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">地址:</label>
+    <div class="col-sm-4">
+      <%= f.select :address_id, address_info,{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button calss="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-floppy-save">保存</span>
+      </button>
+    </div>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $("#order_delivery_time").datepicker({
+    changeMonth: true,
+    changeYear: true
+  });
+  $("#order_complete_time").datepicker({
+    changeMonth: true,
+    changeYear: true
+  });
+</script>

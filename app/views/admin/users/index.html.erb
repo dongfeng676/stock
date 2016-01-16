@@ -5,6 +5,7 @@
    <a href = "/admin">用户列表</a>
 </h2>
 <div class="container">
+  <%= link_to '添加用户', new_admin_user_path, class: ' btn btn-success'%>
   <% if @users.present? %>
     <div class = "panel panel-default">
       <table class="table table-hover">
@@ -19,25 +20,31 @@
             <th>address</th>
             <th>phone_num</th>
             <th>register_time</th>
+            <th>rand</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
           <% @users.each do |user|%>
             <tr>
-              <td class="col-sm-2"><%=user.id%></td>
-              <td class="col-sm-2"><%=user.user_id%></td>
-              <td class="col-sm-2"><%=user.user_name%></td>
-              <td class="col-sm-2"><%=image_tag user.head_portrait%></td>
+              <td class="col-sm-1"><%=user.id%></td>
+              <td class="col-sm-1"><%=user.user_id%></td>
+              <td class="col-sm-1"><%=user.user_name%></td>
+              <td class="col-sm-1"><%=image_tag user_image(user),size:"100x100"%></td>
               <%if user.identification == "0"%>
-                <td class="col-sm-2">未认证</td>
+                <td class="col-sm-1">未认证</td>
               <%else %>
-                <td class="col-sm-2">认证</td>
+                <td class="col-sm-1">认证</td>
               <% end %>
-              <td class="col-sm-2"><%=user.token%></td>
-              <td class="col-sm-2"></td>
-              <td class="col-sm-2"><%=user.phone_num%></td>
-              <td class="col-sm-2"><%=user.created_at%></td>
-              <td class="col-sm-2"><%=user.rand%></td>
+              <td class="col-sm-1"><%=user.token%></td>
+              <td class="col-sm-1"><%=address_show(user.address.first)%></td>
+              <td class="col-sm-1"><%=user.phone_num%></td>
+              <td class="col-sm-1"><%=time_show(user.register_time)%></td>
+              <td class="col-sm-1"><%=user.rand%></td>
+              <td class="col-sm-2">
+               <%= link_to '修改',edit_admin_user_path(user)%>|
+               <%= link_to '删除', admin_user_path(user), method: :delete, data: { confirm: '确定要删除吗？' }%> 
+              </td>
             </tr>
           <% end %>
         </tbody>
