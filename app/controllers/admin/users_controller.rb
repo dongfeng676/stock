@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::BaseController
   def update
     image_params = params[:user][:image]
     if @user.update(user_params)     
-      image_upload(image_params,"User",@user.id)
+      ImageUtil.image_upload(image_params,"User",@user.id)
       redirect_to admin_users_path
     else
       render 'edit' 
@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(user_params)
     @user.user_id = SecureRandom.hex(10)
     if @user.save
-      image_upload(image_params,"User",@user.id)
+      ImageUtil.image_upload(image_params,"User",@user.id)
       redirect_to admin_users_path
     else
       render 'new'

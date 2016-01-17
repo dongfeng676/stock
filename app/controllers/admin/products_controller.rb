@@ -16,7 +16,7 @@ class Admin::ProductsController < Admin::BaseController
   def update
     image_params = params[:product][:image]
     if @product.update(product_params)
-        image_upload(image_params,"Product",@product.id)
+        ImageUtil.image_upload(image_params,"Product",@product.id)
         redirect_to admin_products_path
       else
         render 'edit' 
@@ -32,7 +32,7 @@ class Admin::ProductsController < Admin::BaseController
     @product = Product.new(product_params)
     image_params = params[:product][:image]
     if @product.save
-      image_upload(image_params,"Product",@product.id)
+      ImageUtil.image_upload(image_params,"Product",@product.id)
       redirect_to admin_products_path
     else
       render 'new'
@@ -40,16 +40,11 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   private
-    def image_upload(image_params,model_name,model_id)
-      image_params.each do |img|
-        Image.create(image:img,target_type:model_name,target_id:model_id)
-      end
-    end 
     def set_product
       @product = Product.find(params[:id])
     end
 
     def product_params
-      params.require(:product).permit(:name,:state,:unit_id,:stock_num,:price,:old_price,:sub_category_id,:hot_category_id)
+      params.require(:product).permit(:name,:state,:unit_id,:stock_num,:price,:old_price,:detail_category_id,:hot_category_id)
     end
 end

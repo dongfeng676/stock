@@ -4,4 +4,5 @@ class Product < ActiveRecord::Base
   has_many :images, as: :target
   belongs_to :unit
   has_many :adverts
+  belongs_to :detail_category
 end

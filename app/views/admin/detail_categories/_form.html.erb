@@ -1,0 +1,27 @@
+<%= form_for([:admin,@category],html: {class: "form-horizontal", role: "form", multipart: true}) do |f| %>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">类别名称:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :name,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">子类别:</label>
+    <div class="col-sm-4">
+      <%= f.select :sub_category_id, SubCategory.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+    </div>
+  </div>
+  <div class ="form-group">
+    <label class="col-sm-2 control-label">类别描述:</label>
+    <div class="col-sm-4">
+      <%= f.text_field :desc,class:"form-control"%>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button calss="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-floppy-save">保存</span>
+      </button>
+    </div>
+  </div>
+<% end %>

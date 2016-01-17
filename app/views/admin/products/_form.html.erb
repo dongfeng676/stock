@@ -6,27 +6,27 @@
     </div>
   </div>
   <div class ="form-group">
-    <label class="col-sm-2 control-label">类别:</label>
+    <label class="col-sm-2 control-label">具体类别:</label>
     <div class="col-sm-4">
-      <%= f.select :sub_category_id, SubCategory.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+      <%= f.select :detail_category_id, sub_category_list,{},class: 'form-control'%>
     </div>
   </div>
   <div class ="form-group">
     <label class="col-sm-2 control-label">热门类别:</label>
     <div class="col-sm-4">
-      <%= f.select :hot_category_id, HotCategory.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+      <%= f.select :hot_category_id, hot_category_list,{},class: 'form-control'%>
     </div>
   </div>
   <div class ="form-group">
     <label class="col-sm-2 control-label">状态:</label>
     <div class="col-sm-4">
-      <%= f.select :state, [["上架",0],["下架",1]],{},class: 'form-control'%>
+      <%= f.select :state, state_list,{},class: 'form-control'%>
     </div>
   </div>
   <div class ="form-group">
     <label class="col-sm-2 control-label">单位:</label>
     <div class="col-sm-4">
-      <%= f.select :unit_id, Unit.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+      <%= f.select :unit_id, unit_list,{},class: 'form-control'%>
     </div>
   </div> 
   <div class ="form-group">

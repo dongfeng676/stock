@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116104224) do
+ActiveRecord::Schema.define(version: 20160117135026) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "province",   limit: 255
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20160116104224) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "detail_categories", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.integer  "sub_category_id", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "desc",            limit: 255
+  end
+
+  add_index "detail_categories", ["sub_category_id"], name: "index_detail_categories_on_sub_category_id", using: :btree
 
   create_table "hot_categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -75,19 +85,21 @@ ActiveRecord::Schema.define(version: 20160116104224) do
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.integer  "state",           limit: 4
-    t.string   "image",           limit: 255
-    t.string   "unit_id",         limit: 255
-    t.integer  "stock_num",       limit: 4
-    t.float    "price",           limit: 24
-    t.float    "old_price",       limit: 24
-    t.integer  "sub_category_id", limit: 4
-    t.integer  "hot_category_id", limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "name",               limit: 255
+    t.integer  "state",              limit: 4
+    t.string   "image",              limit: 255
+    t.string   "unit_id",            limit: 255
+    t.integer  "stock_num",          limit: 4
+    t.float    "price",              limit: 24
+    t.float    "old_price",          limit: 24
+    t.integer  "sub_category_id",    limit: 4
+    t.integer  "hot_category_id",    limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "detail_category_id", limit: 4
   end
 
+  add_index "products", ["detail_category_id"], name: "index_products_on_detail_category_id", using: :btree
   add_index "products", ["hot_category_id"], name: "index_products_on_hot_category_id", using: :btree
   add_index "products", ["sub_category_id"], name: "index_products_on_sub_category_id", using: :btree
   add_index "products", ["unit_id"], name: "index_products_on_unit_id", using: :btree
@@ -127,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160116104224) do
 
   add_foreign_key "addresses", "users"
   add_foreign_key "adverts", "products"
+  add_foreign_key "detail_categories", "sub_categories"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "hot_categories"

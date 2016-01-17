@@ -13,10 +13,9 @@
           <tr>
             <th>id</th>
             <th>name</th>
-            <th>类别</th>
-            <th>热门类别名称</th>
+            <th>具体类别</th>
+            <th>热门类别</th>
             <th>状态</th>
-            <th>图片</th>
             <th>单位</th>
             <th>库存数量</th>
             <th>现价</th>
@@ -29,15 +28,26 @@
             <tr>
               <td class="col-sm-1"><%=product.id%></td>
               <td class="col-sm-1"><%=link_to product.name,admin_product_path(product)%></td>
-              <td class="col-sm-1"><%=product.sub_category.name%></td>
-              <td class="col-sm-1"><%=product.hot_category.name%></td>
+              <% if product.detail_category.present?%>
+                <td class="col-sm-1"><%=product.detail_category.name%></td>
+              <% else %>
+                <td class="col-sm-1">暂无</td>
+              <% end %>
+              <% if product.hot_category.present? %>
+                <td class="col-sm-1"><%=product.hot_category.name%></td>
+              <% else %>
+                <td class="col-sm-1">暂无</td>
+              <% end %>
               <% if product.state == 0 %>
                 <td class="col-sm-1">下架</td>
               <% else %>
                 <td class="col-sm-1">上架</td>
               <% end %>
-              <td class="col-sm-1">图片</td>
-              <td class="col-sm-1"><%=product.unit.name%></td>
+              <% if product.unit.present? %>
+                <td class="col-sm-1"><%=product.unit.name%></td>
+              <% else %>
+                <td class="col-sm-1">暂无</td>
+              <% end %>
               <td class="col-sm-1"><%=product.stock_num%></td>
               <td class="col-sm-1"><%=product.price%></td>
               <td class="col-sm-1"><%=product.old_price%></td>

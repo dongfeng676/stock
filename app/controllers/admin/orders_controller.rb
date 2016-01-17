@@ -12,7 +12,9 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def update
+    AppLog.info("params:   #{params[:order][:complete_time]}")
     if @order.update(order_params)
+      AppLog.info("order.complete_time  #{@order.id}")
       redirect_to admin_orders_path
     else
       render 'edit' 

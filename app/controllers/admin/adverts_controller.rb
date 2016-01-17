@@ -18,7 +18,7 @@ class Admin::AdvertsController < Admin::BaseController
 
   def update
     image_params = params[:advert][:ads_image]
-    image_upload(image_params,"Advert",@advert.id)
+    ImageUtil.image_upload(image_params,"Advert",@advert.id)
     if @advert.update(advert_params)
       redirect_to admin_adverts_path
     else
@@ -35,7 +35,7 @@ class Admin::AdvertsController < Admin::BaseController
     @advert = Advert.new(advert_params)
     image_params = params[:advert][:ads_image]
     if @advert.save
-      image_upload(image_params,"Advert",@advert.id)
+      ImageUtil.image_upload(image_params,"Advert",@advert.id)
       redirect_to admin_adverts_path
     else
       render 'new'
