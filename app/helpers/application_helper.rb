@@ -5,6 +5,7 @@ module ApplicationHelper
 
   def address_info
     address_arr = []
+    address_arr << ["请选择",""]
     Address.all.each do |address|
       complete_address = address.province + " " + address.city + " " + address.region + " " + address.detail
       address_arr << [complete_address,address.id]
@@ -22,6 +23,9 @@ module ApplicationHelper
   end
 
   def category_list
+    categories = []
+    categories << ["请选择",""]
+    categories += Category.all.collect{|t| [t.name,t.id]}
   end
 
   def sub_category_list
@@ -46,6 +50,18 @@ module ApplicationHelper
     state = []
     state << ["请选择",""]
     state += [["上架",0],["下架",1]]
+  end
+
+  def product_list
+    products = []
+    products << ["请选择",""]
+    products += Product.all.collect{|t| [t.name,t.id]}
+  end
+
+  def user_list
+    users = []
+    users << ["请选择",""]
+    users += User.all.collect{|t| [t.user_name,t.id]}
   end
 
 end

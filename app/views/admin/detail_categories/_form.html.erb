@@ -8,7 +8,7 @@
   <div class ="form-group">
     <label class="col-sm-2 control-label">子类别:</label>
     <div class="col-sm-4">
-      <%= f.select :sub_category_id, SubCategory.all.collect{|t| [t.name,t.id]},{},class: 'form-control'%>
+      <%= f.select :sub_category_id, sub_category_list,{},class: 'form-control'%>
     </div>
   </div>
   <div class ="form-group">

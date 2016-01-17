@@ -2,7 +2,7 @@
   <div class ="form-group">
     <label class="col-sm-2 control-label">用户:</label>
     <div class="col-sm-4">
-      <%= f.select :user_id, User.all.collect{|t| [t.user_name,t.id]},{},class: 'form-control'%>
+      <%= f.select :user_id, user_list,{},class: 'form-control'%>
     </div>
   </div>
   <div class ="form-group">

@@ -1,10 +1,10 @@
 module Admin::OrderHelper
   def order_state
-    [["不可用",-1],["已生效",0],["送货中",1],["已完成",2],["已取消",3]]
+    [["请选择",""],["不可用",-1],["已生效",0],["送货中",1],["已完成",2],["已取消",3]]
   end
 
   def order_state_show(state)
-    state_show = ""
+    state_show = "暂无"
     case state
     when -1
       state_show = "不可用"

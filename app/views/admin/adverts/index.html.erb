@@ -22,8 +22,11 @@
           <% @adverts.each do |advert|%>
             <tr>
               <td class="col-sm-2"><%=advert.id%></td>
-             <!--  <td class="col-sm-2"><%#=advert.sub_category.name%></td> -->
-              <td class="col-sm-2"><%=advert.product.name%></td>
+              <% if advert.product.present? %>
+                <td class="col-sm-2"><%=advert.product.name%></td>
+              <% else %>
+                <td class="col-sm-2">暂无</td>
+              <% end %>
               <td class="col-sm-2"><%=link_to "图片",admin_advert_path(advert)%></td>
               <td class="col-sm-2">
                <%= link_to '修改',edit_admin_advert_path(advert)%>|

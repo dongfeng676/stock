@@ -13,6 +13,8 @@
           <tr>
             <th>id</th>
             <th>title</th>
+            <th>desc</th>
+            <th>子类别</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -22,6 +24,11 @@
               <td class="col-sm-2"><%=category.id%></td>
               <td class="col-sm-2"><%=category.name%></td>
               <td class="col-sm-2"><%=category.desc%></td>
+              <% if category.sub_category.present? %>
+                <td class="col-sm-2"><%=category.sub_category.name%></td>
+              <% else %>
+                <td class="col-sm-2">暂无</td>
+              <% end %>
               <td class="col-sm-2">
                <%= link_to '修改',edit_admin_detail_category_path(category)%>|
                <%= link_to '删除', admin_detail_category_path(category), method: :delete, data: { confirm: '确定要删除吗？' }%> 

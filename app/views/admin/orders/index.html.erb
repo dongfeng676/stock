@@ -28,7 +28,11 @@
           <% @orders.each do |order|%>
             <tr>
               <td class="col-sm-1"><%=order.id%></td>
-              <td class="col-sm-1"><%=order.user_id%></td>
+              <% if order.user.present? %>
+                <td class="col-sm-1"><%=order.user.user_name%></td>
+              <% else %>
+                <td class="col-sm-1"></td>
+              <% end %>
               <td class="col-sm-1"><%=order_state_show(order.state)%></td>
               <td class="col-sm-1"><%=order.phone_num%></td>
               <td class="col-sm-1"><%=order.receive_name%></td>

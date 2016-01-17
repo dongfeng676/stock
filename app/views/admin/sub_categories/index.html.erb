@@ -23,7 +23,12 @@
             <tr>
               <td class="col-sm-2"><%=category.id%></td>
               <td class="col-sm-2"><%=category.name%></td>
-              <td class="col-sm-2"><%=category.category.name%></td>
+              <% if category.category.present? %>
+                <td class="col-sm-2"><%=category.category.name%></td>
+              <% else %>
+                <td class="col-sm-2">暂无</td>
+              <% end %>
+
               <td class="col-sm-2"><%=category.desc%></td>
               <td class="col-sm-2">
                <%= link_to '修改',edit_admin_sub_category_path(category)%>|
