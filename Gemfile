@@ -53,3 +53,6 @@ gem 'carrierwave'
 gem 'carrierwave-qiniu','~> 0.2.0'
 gem "mini_magick"
 
+gem 'grape'
+gem 'grape-jbuilder'
+

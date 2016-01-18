@@ -58,4 +58,14 @@
     changeMonth: true,
     changeYear: true
   });
+  $("#order_delivery_time" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+  $("#order_complete_time" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+  var delivery_time = '<%=@order.delivery_time%>'
+  if(delivery_time != null && delivery_time != ""){
+    $("#order_delivery_time" ).val(delivery_time)
+  }
+  var complete_time = '<%=@order.complete_time%>'
+  if(complete_time != null && complete_time != ""){
+    $("#order_complete_time" ).val(complete_time)
+  }
 </script>

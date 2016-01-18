@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  mount API => '/'
   get 'admin'=>'admin/welcomes#index'
   namespace :admin do
     resources :categories
