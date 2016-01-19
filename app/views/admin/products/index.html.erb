@@ -17,6 +17,7 @@
             <th>热门类别</th>
             <th>状态</th>
             <th>单位</th>
+            <th>销量</th>
             <th>库存数量</th>
             <th>现价</th>
             <th>原件</th>
@@ -48,6 +49,7 @@
               <% else %>
                 <td class="col-sm-1">暂无</td>
               <% end %>
+              <td class="col-sm-1"><%=product.sale_count%></td>
               <td class="col-sm-1"><%=product.stock_num%></td>
               <td class="col-sm-1"><%=product.price%></td>
               <td class="col-sm-1"><%=product.old_price%></td>

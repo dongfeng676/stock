@@ -5,6 +5,8 @@ module ApiHelpers
   end
 end
 require 'V1/api_category'
+require 'V1/api_advert'
+require 'V1/api_product'
 
 
 class API < Grape::API
@@ -17,4 +19,6 @@ class API < Grape::API
   formatter :json, Grape::Formatter::Jbuilder
   # stock app v1.0 版本
   mount V1::ApiCategory
+  mount V1::ApiAdvert
+  mount V1::ApiProduct
 end
