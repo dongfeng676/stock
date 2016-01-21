@@ -5,8 +5,11 @@ module ApiHelpers
   end
 end
 require 'V1/api_category'
+require 'V1/api_detail_category'
 require 'V1/api_advert'
 require 'V1/api_product'
+require 'V1/api_user'
+require 'V1/api_address'
 
 
 class API < Grape::API
@@ -21,4 +24,7 @@ class API < Grape::API
   mount V1::ApiCategory
   mount V1::ApiAdvert
   mount V1::ApiProduct
+  mount V1::ApiDetailCategory
+  mount V1::ApiUser
+  mount V1::ApiAddress
 end

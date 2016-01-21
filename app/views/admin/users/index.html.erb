@@ -31,13 +31,13 @@
               <td class="col-sm-1"><%=user.user_id%></td>
               <td class="col-sm-1"><%=user.user_name%></td>
               <td class="col-sm-1"><%=image_tag user_image(user),size:"100x100"%></td>
-              <%if user.identification == "0"%>
+              <%if user.identification == 0%>
                 <td class="col-sm-1">未认证</td>
               <%else %>
                 <td class="col-sm-1">认证</td>
               <% end %>
               <td class="col-sm-1"><%=user.token%></td>
-              <td class="col-sm-1"><%=address_show(user.address.first)%></td>
+              <td class="col-sm-1"><%=address_show(user.addresses.first)%></td>
               <td class="col-sm-1"><%=user.phone_num%></td>
               <td class="col-sm-1"><%=time_show(user.register_time)%></td>
               <td class="col-sm-1"><%=user.rand%></td>

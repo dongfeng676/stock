@@ -34,6 +34,12 @@ module ApplicationHelper
     sub_categories += SubCategory.all.collect{|t| [t.name,t.id]}
   end
 
+  def detail_category_list
+    detail_categories = []
+    detail_categories << ["请选择",""]
+    detail_categories += DetailCategory.all.collect{|t| [t.name,t.id]}
+  end
+
   def hot_category_list
     hot_categories = []
     hot_categories << ["请选择",""]

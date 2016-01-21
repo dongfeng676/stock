@@ -1,0 +1,19 @@
+api:
+    http://localhost:3000/api/v1/users/:phone_num
+    获取用户的基本信息
+    类型：　get
+    参数： :phone_num　　类型：string
+
+
+返回结果格式如下：
+{
+  "result": 0,
+  "user": {
+    "id": 5,
+    "name": "asdf",
+    "image": "http://dongfeng.qiniudn.com/uploads/image/image/19/1452942411.jpg",
+    "identification": "未认证",
+    "phone_num": "18301849268",
+    "rand": "银"
+  }
+}

@@ -1,0 +1,57 @@
+api:
+    http://localhost:3000/api/v1/addresses/:phone_num
+    用于获取用户地址列表
+    类型: get
+    参数: phone_num  类型:string 用户电话
+
+返回结果格式如下：
+1.
+  {"result":1}
+  用户没有地址
+2.
+  {
+    "result": 0,
+    "addresses": [
+      {
+        "id": 1,
+        "receive_name": "",
+        "receive_phone": "",
+        "area": "",
+        "detail": "唐镇"
+      }
+    ]
+  }
+
+api:
+    http://localhost:3000/api/v1/addresses
+    用于添加地址
+    类型: post
+    参数：　phone_num
+    　　　　　　detail
+          area
+          receive_name
+          receive_phone
+          以上类型全部为String
+
+返回结果格式如下：
+
+
+post　请求我暂时还没有测试
+
+1.
+  {"result":1}
+  添加失败
+2.
+  {
+    "result": 0,
+    "addresses": [
+      {
+        "id": 1,
+        "receive_name": "",
+        "receive_phone": "",
+        "area": "",
+        "detail": "唐镇"
+      }
+    ]
+  }
+
