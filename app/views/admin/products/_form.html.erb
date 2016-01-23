@@ -6,6 +6,12 @@
     </div>
   </div>
   <div class ="form-group">
+    <label class="col-sm-2 control-label">产品描述:</label>
+    <div class="col-sm-4">
+      <%= f.text_area :desc,class:"form-control"%>
+    </div>
+  </div>
+  <div class ="form-group">
     <label class="col-sm-2 control-label">具体类别:</label>
     <div class="col-sm-4">
       <%= f.select :detail_category_id, detail_category_list,{},class: 'form-control'%>
