@@ -55,4 +55,5 @@ gem "mini_magick"
 
 gem 'grape'
 gem 'grape-jbuilder'
+gem 'redis'
 

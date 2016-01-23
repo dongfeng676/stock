@@ -5,20 +5,23 @@ if @categories.present?
     json.name category.name.to_s
     json.desc category.desc.to_s
   end
-  if @category.present?
-    json.sub_categories(@category.sub_categories) do |sub_category|
+  if @sub_categories.present?
+    json.sub_categories(@sub_cateogries) do |sub_category|
       json.unique_id sub_category.unique_id.to_s
       json.name sub_category.name.to_s
       json.desc sub_category.desc.to_s
-      if sub_category.detail_categories.present?
+      if sub_cateogry.detail_categories.present?
         json.details_categories(sub_category.detail_categories) do |det_category|
-          json.unique_id det_category.unique_id.to_s
-          json.name det_category.name.to_s
-          json.desc det_category.desc.to_s
-        end
+      end
+    end
+    if @detail_categories.present?
+      json.detail_categories(sub_cat.detail_categories) do |detail_cat|
+        json.unique_id detail_cat.unique_id.to_s
+        json.name detail_cat.name.to_s
+        json.desc detail_cat.desc.to_s
       end
     end
   end
 else
-  json.result 0
+  json.result 1
 end

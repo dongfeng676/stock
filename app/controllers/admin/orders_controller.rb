@@ -28,6 +28,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def create
     @order = Order.new(order_params)
+    @order.unique_id = SecureRandom.urlsafe_base64
     if @order.save
       redirect_to admin_orders_path
     else

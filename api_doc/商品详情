@@ -1,24 +1,27 @@
 api:
-    http://localhost:3000/api/v1/products/:id
+    http://localhost:3000/api/v1/products/:unique_id
       获取产品详情
       参数: 
-          :id代表产品id，类型int
+          :uniueq_id代表产品id，类型string
      
 返回结果格式如下：
+{"result":1}
+产品不存在
 {
+  "result": 0,
   "product": {
+    "unique_id": "7OdTh31FEYRUwhhXSMkkBw",
     "name": "苹果",
-    "images": [
-      "http://dongfeng.qiniudn.com/uploads/image/image/4/1452914422.jpg",
-      "http://dongfeng.qiniudn.com/uploads/image/image/5/1452914422.jpg",
-      "http://dongfeng.qiniudn.com/uploads/image/image/6/1452915296.jpg",
-      "http://dongfeng.qiniudn.com/uploads/image/image/7/1452915296.jpg"
-    ],
-    "stock_num": 55,
-    "price": 55.0,
-    "old_price": 55.0,
-    "detail_category_id": null,
-    "hot_category_id": 2,
-    "sale_count": 1000
+    "images": "[\"http://dongfeng.qiniudn.com/uploads/image/image/4/1452914422.jpg\", \"http://dongfeng.qiniudn.com/uploads/image/image/5/1452914422.jpg\", \"http://dongfeng.qiniudn.com/uploads/image/image/6/1452915296.jpg\", \"http://dongfeng.qiniudn.com/uploads/image/image/7/1452915296.jpg\", \"http://dongfeng.qiniudn.com/uploads/image/image/31/1453379710.jpg\"]",
+    "stock_num": "55",
+    "price": "55.0",
+    "old_price": "55.0",
+    "detail_category_id": "2",
+    "hot_category_id": "2",
+    "sale_count": "1000",
+    "spec": "zdfsaf",
+    "unit_price": "asdfsadf",
+    "origin": "asdfasdf",
+    "remark": "asdfasdf"
   }
 }

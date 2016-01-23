@@ -28,6 +28,7 @@ class Admin::HotCategoriesController < Admin::BaseController
 
   def create
     @category = HotCategory.new(category_params)
+    @category.unique_id = SecureRandom.urlsafe_base64
     if @category.save
       redirect_to admin_hot_categories_path
     else

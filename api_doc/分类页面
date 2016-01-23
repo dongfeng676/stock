@@ -7,62 +7,53 @@ api:
   "result": 0,
   "categories": [
     {
-      "id": 2,
+      "unique_id": "OHIpwpAYw7_WGoK2A7cbvQ",
       "name": "1",
-      "desc": "1",
-      "sub_categories": [
+      "desc": "1"
+    },
+    {
+      "unique_id": "dgNYk8A5FrkMjjBwa2Du5A",
+      "name": "22",
+      "desc": "22"
+    },
+    {
+      "unique_id": "Zm6vqipU_rVM1-_dvJ7QYA",
+      "name": "33",
+      "desc": "44"
+    },
+    {
+      "unique_id": "KfOcLSfgtS9bA-aMr0Y5TA",
+      "name": "4",
+      "desc": "4"
+    }
+  ],
+  "sub_categories": [
+    {
+      "unique_id": "8thvyudThyUoxKmvWaDG8Q",
+      "name": "11111",
+      "desc": "asf",
+      "details_categories": [
         {
-          "id": 3,
-          "name": "11111",
-          "desc": "asf",
-          "detail_categories": [
-            {
-              "id": 2,
-              "name": "222",
-              "desc": "222"
-            }
-          ]
+          "unique_id": "y8b0t8jiPwahxs4pMllO3A",
+          "name": "222",
+          "desc": "222"
         },
         {
-          "id": 5,
-          "name": "333",
-          "desc": "333",
-          "detail_categories": [
-            
-          ]
+          "unique_id": "VWC25MxWoOPnFbpSyPZn5A",
+          "name": "888",
+          "desc": ""
         }
       ]
     },
     {
-      "id": 3,
-      "name": "22",
-      "desc": "22",
-      "sub_categories": [
-        {
-          "id": 4,
-          "name": "22222",
-          "desc": "",
-          "detail_categories": [
-            
-          ]
-        }
-      ]
+      "unique_id": "0fcvU5-d9GEo08dcjF5V0w",
+      "name": "22222",
+      "desc": ""
     },
     {
-      "id": 4,
-      "name": "33",
-      "desc": "44",
-      "sub_categories": [
-        
-      ]
-    },
-    {
-      "id": 5,
-      "name": "4",
-      "desc": "4",
-      "sub_categories": [
-        
-      ]
+      "unique_id": "gwwnD2UPbdI50T8DxfluUw",
+      "name": "333",
+      "desc": "333"
     }
   ]
 }

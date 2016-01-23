@@ -17,3 +17,18 @@ api:
     "rand": "银"
   }
 }
+
+api:
+   http://localhost:3000/api/v1/users/send_sms
+   发送验证码
+   类型post
+   参数 :phone_num 类型:string
+返回结果格式如下:
+发送成功
+{
+  "result": 0
+}
+发送失败
+{
+  "result": 1
+}

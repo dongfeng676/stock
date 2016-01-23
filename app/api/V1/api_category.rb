@@ -7,6 +7,7 @@ module V1
       # http://localhost:3000/api/v1/categories
       get "", jbuilder: 'v1/categories/index' do
         @categories = Category.all
+        @category = @categories.first
       end
     end
   end

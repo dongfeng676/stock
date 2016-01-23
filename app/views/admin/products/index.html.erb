@@ -4,7 +4,7 @@
 <h2 class="col-sm-offset-5">
    <a href = "/admin">产品列表</a>
 </h2>
-<div class="container">
+<div class="product_weight">
   <%= link_to '添加产品', new_admin_product_path, class: ' btn btn-success'%>
   <% if @products.present? %>
     <div class = "panel panel-default">
@@ -22,6 +22,10 @@
             <th>库存数量</th>
             <th>现价</th>
             <th>原件</th>
+            <th>规格</th>
+            <th>单价</th>
+            <th>产地</th>
+            <th>备注</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -55,6 +59,10 @@
               <td class="col-sm-1"><%=product.stock_num%></td>
               <td class="col-sm-1"><%=product.price%></td>
               <td class="col-sm-1"><%=product.old_price%></td>
+              <td class="col-sm-1"><%=product.spec%></td>
+              <td class="col-sm-1"><%=product.unit_price%></td>
+              <td class="col-sm-1"><%=product.origin%></td>
+              <td class="col-sm-1"><%=product.remark%></td>
               <td class="col-sm-2">
                <%= link_to '修改',edit_admin_product_path(product)%>|
                <%= link_to '删除', admin_product_path(product), method: :delete, data: { confirm: '确定要删除吗？' }%> 

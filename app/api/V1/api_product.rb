@@ -5,13 +5,12 @@ module V1
 
     resources 'products' do
 
-      # http://localhost:3000/api/v1/products/:id
+      # http://localhost:3000/api/v1/products/:unique_id
       params do
-        requires :id, type: Integer
+        requires :unique_id, type: String
       end
-      get ":id", jbuilder: 'v1/products/show' do
-        @product = Product.find(params[:id])
-        @product = Product.new if @product.blank?
+      get ":unique_id", jbuilder: 'v1/products/show' do
+        @product = Product.find_by(unique_id:params[:unique_id])
       end
     end
   end

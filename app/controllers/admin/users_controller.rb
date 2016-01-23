@@ -29,6 +29,7 @@ class Admin::UsersController < Admin::BaseController
   def create
     image_params = params[:user][:image]
     @user = User.new(user_params)
+    @user.unique_id = SecureRandom.urlsafe_base64
     @user.user_id = SecureRandom.hex(10)
     if @user.save
       ImageUtil.image_upload(image_params,"User",@user.id)

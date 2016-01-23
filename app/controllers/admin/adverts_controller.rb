@@ -34,6 +34,7 @@ class Admin::AdvertsController < Admin::BaseController
   def create
     @advert = Advert.new(advert_params)
     image_params = params[:advert][:ads_image]
+    @advert.unique_id = SecureRandom.urlsafe_base64
     if @advert.save
       ImageUtil.image_upload(image_params,"Advert",@advert.id)
       redirect_to admin_adverts_path

@@ -26,6 +26,7 @@ class Admin::AddressesController < Admin::BaseController
 
   def create
     @address = Address.new(address_params)
+    @address.unique_id = SecureRandom.urlsafe_base64
     if @address.save
       redirect_to admin_addresses_path
     else

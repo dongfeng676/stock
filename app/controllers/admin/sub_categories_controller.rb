@@ -28,6 +28,7 @@ class Admin::SubCategoriesController < Admin::BaseController
 
   def create
     @category = SubCategory.new(category_params)
+    @category.unique_id = SecureRandom.urlsafe_base64
     if @category.save
       redirect_to admin_sub_categories_path
     else
