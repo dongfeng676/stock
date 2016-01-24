@@ -1,7 +1,7 @@
 api:
     http://localhost:3000/api/v1/users/:phone_num
     获取用户的基本信息
-    类型：　get
+    类型：　post
     参数： :phone_num　　类型：string
 
 
@@ -9,14 +9,15 @@ api:
 {
   "result": 0,
   "user": {
-    "id": 5,
+    "unique_id":"*********"
     "name": "asdf",
     "image": "http://dongfeng.qiniudn.com/uploads/image/image/19/1452942411.jpg",
     "identification": "未认证",
-    "phone_num": "18301849268",
+    "phone_num": "********",
     "rand": "银"
   }
 }
+
 
 api:
    http://localhost:3000/api/v1/users/send_sms
@@ -32,3 +33,54 @@ api:
 {
   "result": 1
 }
+
+api:
+   http://localhost:3000/api/v1/users/sign_in
+   用户登陆
+   类型 post
+   参数: 
+      phone_num 类型:string
+      rand_code 类型:string
+
+返回结果类型:
+成功:
+result 0
+token "***************"
+失败:
+result 1
+token ""
+
+api:
+    http://localhost:3000/api/v1/users/token
+    登陆时候获取token
+    类型 post
+    参数: phone_num 类型:string
+
+返回结果类型:
+成功:
+result 0
+token "***************"
+失败:
+result 1
+token ""
+
+api: 
+    http://localhost:3000/api/v1/users
+    修改用户信息
+    类型: put
+    参数:
+       :phone_num, type: String
+       :new_phone_num,type:String
+       :user_name, type: String
+       :head_portrait,type:String
+
+返回结果类型:
+成功:
+result 0
+unique_id unique_id
+name user_name.to_s
+image "************"
+identification "未认证/认证"
+phone_num phone_num
+rand rand
+

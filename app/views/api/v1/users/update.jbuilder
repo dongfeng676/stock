@@ -1,6 +1,8 @@
-json.result 0
-json.user do
-  json.id @user.unique_id
+if @user.blank? && @flag == "1"
+  json.result 1
+else
+  json.result 0
+  json.unique_id @user.unique_id
   json.name @user.user_name.to_s
   json.image Image.get_images(@user).first.to_s
   if @user.identification == 0

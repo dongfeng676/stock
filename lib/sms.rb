@@ -3,7 +3,7 @@ require 'uri'
 module Sms
   def self.send_sms(mobile_encrypt)
     mobile = AesUtil.aes_dicrypt($key,mobile_encrypt)
-    mobile = mobile_encrypt
+    AppLog.info("mobile: #{mobile}")
     params = {}
     #修改为您的apikey.可在官网（http://www.yuanpian.com)登录后用户中心首页看到
     apikey = '7c5ab5d6099fdaa4424fd0ad8ca29388'
