@@ -24,6 +24,15 @@ module Sms
 
     response = Net::HTTP.post_form(send_sms_uri,params)
     response = JSON.parse(response.body)
+    AppLog.info("response:  #{response}")
+    if response["code"] == 0
+      $redis.set(mobile_encrypt,rand)
+      $redis.set(mobile_encrypt,1800)
+      AppLog.info("#{$.redis.get(mobile_encrypt)}")
+      return "success"
+    else
+      return "error"
+    end
   end
 
   def self.rand_code

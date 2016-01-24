@@ -20,13 +20,8 @@ module V1
       end
       post 'send_sms',jbuilder:"v1/users/send_sms" do
         phone_num_encrypt = params[:phone_num]
-        response = Sms.send_sms(phone_num_encrypt)
-        @info = 0
-        if response["code"] == "0"
-          @info = 1
-          $redis.set(mobile_encrypt,rand)
-          $redis.set(mobile_encrypt,1800)
-        end
+        @info = Sms.send_sms(phone_num_encrypt)
+        AppLog.info("info:#{@info}")
       end
 
       #http://localhost:3000/api/v1/users/sign_in
