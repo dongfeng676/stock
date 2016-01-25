@@ -45,14 +45,14 @@ module V1
       post 'token',jbuilder:"v1/users/token" do
         phone_num_encrypt = params[:phone_num]
         user = User.find_by(phone_num:phone_num_encrypt)
+        AppLog.info("user:  #{user.attributes}")
         if user.present?
           @token = cookies[phone_num_encrypt]
+          AppLog.info("token: #{cookies[phone_num_encrypt]}")
           if @token.present?
             token = SecureRandom.urlsafe_base64
             cookies[phone_num_encrypt] = {value:token,expires:10.day.from_now}
             user.update(token:token)
-            AppLog.info("user:  #{user.attributes}")
-            AppLog.info("token: #{cookies[phone_num_encrypt]}")
           end
         else
           @token = nil

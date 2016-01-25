@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
       if user.present?
         user.update(token:token)
       else
-        User.create(token:token,phone_num:phone_num_encrypt,unique_id:SecureRandom.urlsafe_base64)
+        User.create(token:token,phone_num:phone_num_encrypt,unique_id:SecureRandom.urlsafe_base64,rand:"铜")
       end
     else
       token = nil
