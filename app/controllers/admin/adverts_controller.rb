@@ -18,6 +18,8 @@ class Admin::AdvertsController < Admin::BaseController
 
   def update
     image_params = params[:advert][:ads_image]
+    AppLog.info("class:   #{image_params.class}")
+    AppLog.info("image_params:   #{image_params}")
     ImageUtil.image_upload(image_params,"Advert",@advert.id)
     if @advert.update(advert_params)
       redirect_to admin_adverts_path

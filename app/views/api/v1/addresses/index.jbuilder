@@ -6,6 +6,7 @@ if @addresses.present?
     json.receive_phone address.receive_phone.to_s
     json.area address.area.to_s
     json.detail address.detail.to_s
+    json.default address.default.to_s
   end
 else
   json.result 1

@@ -18,6 +18,7 @@ api:
         "receive_phone": "",
         "area": "",
         "detail": "唐镇"
+        "default":1(默认)/0(普通)
       }
     ]
   }

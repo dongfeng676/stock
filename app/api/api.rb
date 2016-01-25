@@ -10,6 +10,7 @@ require 'V1/api_advert'
 require 'V1/api_product'
 require 'V1/api_user'
 require 'V1/api_address'
+require 'V1/api_cookie'
 
 
 class API < Grape::API
@@ -27,4 +28,5 @@ class API < Grape::API
   mount V1::ApiDetailCategory
   mount V1::ApiUser
   mount V1::ApiAddress
+  mount V1::ApiCookie
 end

@@ -1,4 +1,4 @@
-if @address.present?
+if @info == "success"
   json.result 0
   json.address do
     json.unique_id @address.id.to_s
