@@ -63,12 +63,14 @@ module V1
         end
       end
 
-      #http://localhost:3000/api/v1/addresses/:unique_id
+      #http://localhost:3000/api/v1/addresses/show/:unique_id
       params do 
         requires :unique_id,type:String
       end
-      get "",jbuilder:"v1/addresses/show" do
+      get "show/:unique_id",jbuilder:"v1/addresses/show" do
+        AppLog.info("address:test")
         @address = Address.find_by(unique_id:params[:unique_id])
+        AppLog.info("address:  #{@address}")
       end
     end
   end
