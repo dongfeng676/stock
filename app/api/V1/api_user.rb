@@ -32,7 +32,10 @@ module V1
       post "sign_in",jbuilder:"v1/users/sign_in" do
         phone_num_encrypt = params[:phone_num]
         rand_code = params[:rand_code]
-        @token = User.sing_in(phone_num_encrypt,rand_code)
+        @token = User.sign_in(phone_num_encrypt,rand_code)
+        if @token.present?
+          cookies[phone_num_encrypt] = {value:@token,expires:10.day.from_now}
+        end
       end
 
       #http://localhost:3000/api/v1/users/token
