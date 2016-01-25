@@ -30,7 +30,7 @@ module V1
         @user = User.find_by(phone_num:params[:phone_num])
         AppLog.info("user:  #{@user}")
         if @user.present?
-          @address = Address.create(user_id:@user.id,area:params[:area],detail:params[:detail],receive_phone:params[:receive_phone],receive_name:params[:receive_name],default:params[:default])
+          @address = Address.create(user_id:@user.id,area:params[:area],detail:params[:detail],receive_phone:params[:receive_phone],receive_name:params[:receive_name],default:params[:default],unique_id:SecureRandom.urlsafe_base64)
         end
       end
 
@@ -46,20 +46,29 @@ module V1
       put "",jbuilder: 'v1/addresses/update' do
         @address = Address.find_by(unique_id:params[:unique_id])
         if @address.present?
-          @address = Address.update(area:params[:area],detail:params[:detail],receive_phone:params[:receive_phone],receive_name:params[:receive_name],default:params[:default])
+          @address.update(area:params[:area],detail:params[:detail],receive_phone:params[:receive_phone],receive_name:params[:receive_name],default:params[:default])
           @info = "success"
         end
       end
 
+      #http://localhost:3000/api/v1/addresses
       params do 
         requires :unique_id,type:String
       end
-      delete "",jbuilder:"v1/address/delete" do
+      delete "",jbuilder:"v1/addresses/delete" do
         @address = Address.find_by(unique_id:params[:unique_id])
         if @address.present?
           @address.destroy
           @info = "success"
         end
+      end
+
+      #http://localhost:3000/api/v1/addresses/:unique_id
+      params do 
+        requires :unique_id,type:String
+      end
+      get "",jbuilder:"v1/addresses/show" do
+        @address = Address.find_by(unique_id:params[:unique_id])
       end
     end
   end

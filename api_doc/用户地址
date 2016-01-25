@@ -32,6 +32,7 @@ api:
           area
           receive_name
           receive_phone
+          default (0标示普通1表示默认地址)
           以上类型全部为String
 
 返回结果格式如下：
@@ -56,3 +57,14 @@ post　请求我暂时还没有测试
     ]
   }
 
+
+api:
+http://localhost:3000/api/v1/addresses
+类型:put
+参数及其他请看截图
+
+
+api:
+  http://localhost:3000/api/v1/addresses
+类型:delete
+参数及其他请看截图

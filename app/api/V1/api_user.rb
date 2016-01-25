@@ -34,7 +34,10 @@ module V1
         rand_code = params[:rand_code]
         @token = User.sign_in(phone_num_encrypt,rand_code)
         if @token.present?
-          cookies[phone_num_encrypt] = {value:@token,expires:10.day.from_now}
+          redis_token = phone_num_encrypt + unique_id
+          $redis.set(redis_token,@token)
+          $redis.expire(redis_token,24*3600*15)
+          # cookies[phone_num_encrypt] = {value:@token,expires:10.day.from_now}
         end
       end
 
@@ -47,11 +50,14 @@ module V1
         user = User.find_by(phone_num:phone_num_encrypt)
         AppLog.info("user:  #{user.attributes}")
         if user.present?
-          @token = cookies[phone_num_encrypt]
-          AppLog.info("token: #{cookies[phone_num_encrypt]}")
+          # @token = cookies[phone_num_encrypt]
+          redis_token = phone_num_encrypt + unique_id
+          @token = $redis.get(redis_token)
           if @token.present?
             token = SecureRandom.urlsafe_base64
-            cookies[phone_num_encrypt] = {value:token,expires:10.day.from_now}
+            $redis.set(redis_token,@token)
+            # $redis.expire(redis_token,24*3600*15)
+            # cookies[phone_num_encrypt] = {value:token,expires:10.day.from_now}
             user.update(token:token)
           end
         else
@@ -73,7 +79,7 @@ module V1
           ActiveRecord::Base.transaction do
             @user.update(phone_num:params[:new_phone_num],user_name:params[:user_name])
             @user.images.destroy_all
-            ImageUtil.image_upload(params[:head_portrait],"User",@user.id)
+            ImageUtil.base64_image(params[:head_portrait],"User",@user.id)
             @flag = "1"
           end
         end
