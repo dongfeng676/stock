@@ -13,8 +13,9 @@ module ApplicationHelper
     address_arr
   end
 
-  def address_show(address)
-    if address.present?
+  def address_show(addresses)
+    if addresses.present?
+      address = addresses.first
       complete_address = address.province + " " + address.city + " " + address.region + " " + address.detail.to_s
     else
       complete_address = "暂无"
