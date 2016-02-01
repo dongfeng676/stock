@@ -8,7 +8,7 @@ else
     json.product_unique_id cart_item.product.present? ? cart_item.product.unique_id.to_s : ""
     if cart_item.product.present?
       json.product do
-        json.unique_id cart_item.product.unique_id_to_s
+        json.unique_id cart_item.product.unique_id.to_s
         json.name cart_item.product.name.to_s
         json.images Image.get_images(cart_item.product).to_s
         json.unit if cart_item.product.unit.present?? cart_item.product.unit.name : ""

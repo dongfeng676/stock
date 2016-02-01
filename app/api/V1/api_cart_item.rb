@@ -49,15 +49,13 @@ module V1
       #http://localhost:3000/api/v1/cart_items
       params do 
         requires :token,type: String
-        requires :pro_unique_ids,type:String
+        requires :unique_ids,type:String
       end
       delete "",jbuilder:"v1/cart_items/delete" do
         @token,@user = current_user
         if @token.present?
-          ActiveRecord::BASE.transaction do
-            pro_unique_ids = JSON.prase(params[:pro_unique_ids])
-            pro_ids = Product.where(id:pro_unique_ids).pluck(:id)
-            @cart_items = CartItem.where("user_id = ?",@user.id).where(product_id:pro_ids)
+          ActiveRecord::Base.transaction do
+            @cart_items = CartItem.where("user_id = ?",@user.id).where(unique_id:params[:unique_ids])
             @cart_items.destroy_all if @cart_items.present?
             @info = "success"
           end
