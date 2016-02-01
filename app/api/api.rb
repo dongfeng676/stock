@@ -13,6 +13,7 @@ require 'V1/api_user'
 require 'V1/api_address'
 require 'V1/api_cookie'
 require 'V1/api_cart_item'
+require 'V1/api_order'
 
 
 class API < Grape::API
@@ -32,4 +33,5 @@ class API < Grape::API
   mount V1::ApiAddress
   mount V1::ApiCookie
   mount V1::ApiCartItem
+  mount V1::ApiOrder
 end

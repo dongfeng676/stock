@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126122450) do
+ActiveRecord::Schema.define(version: 20160201072127) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "province",      limit: 255
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160126122450) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "unique_id",     limit: 255
+    t.float    "order_money",   limit: 24
   end
 
   add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
