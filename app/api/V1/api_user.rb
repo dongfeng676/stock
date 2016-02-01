@@ -32,7 +32,7 @@ module V1
       post "sign_in",jbuilder:"v1/users/sign_in" do
         phone_num_encrypt = params[:phone_num]
         rand_code = params[:rand_code]
-        @token = User.sign_in(phone_num_encrypt,rand_code)
+        @token,unique_id = User.sign_in(phone_num_encrypt,rand_code)
         if @token.present?
           redis_token = phone_num_encrypt + unique_id
           $redis.set(redis_token,@token)
@@ -51,7 +51,7 @@ module V1
         AppLog.info("user:  #{user.attributes}")
         if user.present?
           # @token = cookies[phone_num_encrypt]
-          redis_token = phone_num_encrypt + unique_id
+          redis_token = phone_num_encrypt + user.unique_id
           @token = $redis.get(redis_token)
           if @token.present?
             token = SecureRandom.urlsafe_base64

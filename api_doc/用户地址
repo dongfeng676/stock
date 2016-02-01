@@ -68,3 +68,8 @@ api:
   http://localhost:3000/api/v1/addresses
 类型:delete
 参数及其他请看截图
+
+api:
+   http://jinhuola.cc/api/v1/addresses/show/enwyZ6GBwS3lmxCIqVK5wt
+    类型:get
+    参数及其他请看截图

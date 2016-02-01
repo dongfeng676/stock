@@ -1,4 +1,4 @@
-if @user.blank? && @flag == "1"
+if @user.blank? && @flag != "1"
   json.result 1
 else
   json.result 0

@@ -2,6 +2,7 @@ module ApiHelpers
   def body_parasm
     params_ =  request.body.read.gsub("\x00","{")
     params_json = JSON.parse params_
+    AppLog.info("params_json :  #{params_json}")
   end
 end
 require 'V1/api_category'
@@ -11,6 +12,7 @@ require 'V1/api_product'
 require 'V1/api_user'
 require 'V1/api_address'
 require 'V1/api_cookie'
+require 'V1/api_cart_item'
 
 
 class API < Grape::API
@@ -29,4 +31,5 @@ class API < Grape::API
   mount V1::ApiUser
   mount V1::ApiAddress
   mount V1::ApiCookie
+  mount V1::ApiCartItem
 end

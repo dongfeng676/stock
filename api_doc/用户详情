@@ -1,5 +1,5 @@
 api:
-    http://localhost:3000/api/v1/users/:phone_num
+    http://localhost:3000/api/v1/users/user_info
     获取用户的基本信息
     类型：　post
     参数： :phone_num　　类型：string
