@@ -37,7 +37,7 @@
                 <td class="col-sm-1">认证</td>
               <% end %>
               <td class="col-sm-1"><%=user.token%></td>
-              <td class="col-sm-1"><%=address_show(user.addresses)%></td>
+              <td class="col-sm-1"><%=address_show(user.addresses.first)%></td>
               <td class="col-sm-1"><%=user.phone_num%></td>
               <td class="col-sm-1"><%=time_show(user.register_time)%></td>
               <td class="col-sm-1"><%=user.rand%></td>
