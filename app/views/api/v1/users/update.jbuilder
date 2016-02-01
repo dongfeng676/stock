@@ -4,7 +4,7 @@ else
   json.result 0
   json.unique_id @user.unique_id
   json.name @user.user_name.to_s
-  json.image Image.get_images(@user).first.to_s
+  json.image Image.where(target_id:@user.id,target_type:"User").first.image.url.to_s
   if @user.identification == 0
     json.identification "未认证"
   else
