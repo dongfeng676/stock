@@ -5,6 +5,6 @@ class Product < ActiveRecord::Base
   belongs_to :unit
   has_many :adverts
   belongs_to :detail_category
-  belongs_to :cart_item
+  has_one :cart_item
   scope :state, -> {where(state:1)}
 end
