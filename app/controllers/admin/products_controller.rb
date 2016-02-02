@@ -3,7 +3,7 @@ class Admin::ProductsController < Admin::BaseController
   before_action :set_product,only:[:edit,:update,:destroy,:show]
   
   def index
-    @products = Product.all
+    @products = Product.paged_list(params[:page],20)
   end
 
   def new

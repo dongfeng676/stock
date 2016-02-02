@@ -7,4 +7,5 @@ class Product < ActiveRecord::Base
   belongs_to :detail_category
   has_one :cart_item
   scope :state, -> {where(state:1)}
+  scope :paged_list, ->(p,n){ page(p).per(n) } 
 end
