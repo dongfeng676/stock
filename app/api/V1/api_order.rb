@@ -48,7 +48,7 @@ module V1
           AppLog.info("products : #{params[:products]}")
           address = Address.find_by(unique_id:params[:address_id])
           address_id = address.present? ? address.id : nil
-          products_json = params[:products].gsub("//","")
+          products_json = params[:products].gsub("\\","")
           AppLog.info("products_json : #{products_json}")
           @order = Order.create(state:0,phone_num:params[:phone_num],receive_name:params[:receive_name],products:products_json,user_id:@user.id,address_id:address_id,order_money:params[:money])
         end
