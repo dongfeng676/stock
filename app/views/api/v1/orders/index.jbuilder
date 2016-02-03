@@ -10,6 +10,7 @@ else
     json.created_at order.created_at.to_s
     json.delivery_time order.delivery_time.to_s
     json.complete_time order.complete_time.to_s
+    json.address product.get_address.to_s
     if order.products.present?
       json.products(JSON.parse(order.products)) do |pro_hash|
         json.unique_id pro_hash["unique_id"].to_s
@@ -18,7 +19,6 @@ else
         if product.present?
           json.name product.name.to_s
           json.image Image.get_images(product).first.to_s
-          json.address product.get_address.to_s
           json.unit if product.unit.present?? product.unit.name.to_s : ""
           json.stock_num product.stock_num.to_s
           json.price product.price.to_s
