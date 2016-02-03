@@ -91,11 +91,11 @@ module V1
         AppLog.info("address:  #{@address}")
       end
 
-      #http://localhost:3000/api/v1/addresses/default
+      #http://localhost:3000/api/v1/addresses/default/:token
       params do 
         requires :token,type:String
       end
-      get 'default',jbuilder:"v1/addresses/show" do 
+      get 'default/:token',jbuilder:"v1/addresses/show" do 
         @token,@user = current_user
         if @token.present?
           @address = Address.find_by(user_id:@user.id,default:1)
