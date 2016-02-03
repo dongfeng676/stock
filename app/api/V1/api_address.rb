@@ -28,6 +28,10 @@ module V1
       post "",jbuilder: 'v1/addresses/new' do
         @token,@user = current_user
         if @token.present?
+          if params[:default] == "1"
+            address_default = Address.find_by(user_id:@user.id,default:1)
+            address_default.update(default:0) if address_default.present?
+          end
           @address = Address.create(user_id:@user.id,area:params[:area],detail:params[:detail],receive_phone:params[:receive_phone],receive_name:params[:receive_name],default:params[:default],unique_id:SecureRandom.urlsafe_base64)
         end
       end
@@ -47,6 +51,10 @@ module V1
         if @token.present?
           @address = Address.find_by(unique_id:params[:unique_id])
           if @address.present?
+             if params[:default] == "1"
+              address_default = Address.find_by(user_id:@user.id,default:1)
+              address_default.update(default:0) if address_default.present?
+            end
             @address.update(area:params[:area],detail:params[:detail],receive_phone:params[:receive_phone],receive_name:params[:receive_name],default:params[:default])
             @info = "success"
           end
@@ -81,6 +89,17 @@ module V1
           @address = Address.find_by(unique_id:params[:unique_id])
         end
         AppLog.info("address:  #{@address}")
+      end
+
+      #http://localhost:3000/api/v1/addresses/default
+      params do 
+        requires :token,type:String
+      end
+      get 'default',jbuilder:"v1/addresses/show" do 
+        @token,@user = current_user
+        if @token.present?
+          @address = Address.find_by(user_id:@user.id,default:1)
+        end
       end
     end
   end
