@@ -51,7 +51,7 @@ module V1
         if @token.present?
           token = SecureRandom.urlsafe_base64
           redis_token = @user.phone_num + @user.unique_id
-          $redis.set(redis_token,@token)
+          $redis.set(redis_token,token)
           @user.update(token:token)
         else
           @token = nil
