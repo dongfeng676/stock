@@ -49,10 +49,10 @@ module V1
       post 'token',jbuilder:"v1/users/token" do
         @token,user = current_user
         if @token.present?
-          token = SecureRandom.urlsafe_base64
+          @token = SecureRandom.urlsafe_base64
           redis_token = @user.phone_num + @user.unique_id
-          $redis.set(redis_token,token)
-          @user.update(token:token)
+          $redis.set(redis_token,@token)
+          @user.update(token:@token)
         else
           @token = nil
         end
