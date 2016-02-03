@@ -1,21 +1,21 @@
 module V1
   class ApiOrder < Grape::API
 
-    helpers do 
-      def current_user
-        user_token = params[:token]
-        AppLog.info("user_token:    #{user_token}")
-        @user = User.find_by(token:user_token)
-        if @user.present?
-          AppLog.info("user_unique_id : #{@user.unique_id}")
-          redis_token = @user.phone_num.to_s + @user.unique_id.to_s
-          AppLog.info("redis_token:  #{redis_token}")
-          @token = $redis.get(redis_token)
-          AppLog.info("token is :#{@token}")
-        end
-        [@token,@user]
-      end
-    end
+    # helpers do 
+    #   def current_user
+    #     user_token = params[:token]
+    #     AppLog.info("user_token:    #{user_token}")
+    #     @user = User.find_by(token:user_token)
+    #     if @user.present?
+    #       AppLog.info("user_unique_id : #{@user.unique_id}")
+    #       redis_token = @user.phone_num.to_s + @user.unique_id.to_s
+    #       AppLog.info("redis_token:  #{redis_token}")
+    #       @token = $redis.get(redis_token)
+    #       AppLog.info("token is :#{@token}")
+    #     end
+    #     [@token,@user]
+    #   end
+    # end
 
     version 'v1', using: :path
 

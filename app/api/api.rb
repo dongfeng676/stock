@@ -4,6 +4,20 @@ module ApiHelpers
     params_json = JSON.parse params_
     AppLog.info("params_json :  #{params_json}")
   end
+
+  def current_user
+    user_token = params[:token]
+    AppLog.info("user_token:    #{user_token}")
+    @user = User.find_by(token:user_token)
+    if @user.present?
+      AppLog.info("user_unique_id : #{@user.unique_id}")
+      redis_token = @user.phone_num.to_s + @user.unique_id.to_s
+      AppLog.info("redis_token:  #{redis_token}")
+      @token = $redis.get(redis_token)
+      AppLog.info("token is :#{@token}")
+    end
+    [@token,@user]
+  end
 end
 require 'V1/api_category'
 require 'V1/api_detail_category'
