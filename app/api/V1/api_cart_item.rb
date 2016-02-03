@@ -53,6 +53,7 @@ module V1
       end
       delete "",jbuilder:"v1/cart_items/delete" do
         @token,@user = current_user
+        AppLog.info("unique_ids: #{params[:unique_ids]}")
         if @token.present?
           ActiveRecord::Base.transaction do
             @cart_items = CartItem.where("user_id = ?",@user.id).where(unique_id:params[:unique_ids])

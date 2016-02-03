@@ -45,6 +45,7 @@ module V1
       post "",jbuilder:"v1/orders/create" do
         @token,@user = current_user
         if @token.present?
+          AppLog.info("products : #{params[:products]}")
           address = Address.find_by(unique_id:params[:address_id])
           address_id = address.present? ? address.id : nil
           products = body_parasm
