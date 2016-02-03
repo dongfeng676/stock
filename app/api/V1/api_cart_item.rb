@@ -54,9 +54,11 @@ module V1
       delete "",jbuilder:"v1/cart_items/delete" do
         @token,@user = current_user
         AppLog.info("unique_ids: #{params[:unique_ids]}")
+        unique_ids_json = JSON.parse(params[:unique_ids])
+        AppLog.info("unique_ids_json:  #{unique_ids_json}")
         if @token.present?
           ActiveRecord::Base.transaction do
-            @cart_items = CartItem.where("user_id = ?",@user.id).where(unique_id:params[:unique_ids])
+            @cart_items = CartItem.where("user_id = ?",@user.id).where(unique_id:unique_ids_json)
             @cart_items.destroy_all if @cart_items.present?
             @info = "success"
           end
