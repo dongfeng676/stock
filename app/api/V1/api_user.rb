@@ -7,11 +7,12 @@ module V1
 
       # http://localhost:3000/api/v1/users/user_info
       params do
-        requires :phone_num, type: String
+        requires :token, type: String
       end
       post "user_info", jbuilder: 'v1/users/show' do
-        phone_num_encrypt = params[:phone_num]
-        @user = User.find_by(phone_num:phone_num_encrypt)
+        @token,@user = current_user
+        # phone_num_encrypt = params[:phone_num]
+        # @user = User.find_by(phone_num:phone_num_encrypt)
       end
 
       # http://localhost:3000/api/v1/users/send_sms
@@ -43,23 +44,15 @@ module V1
 
       #http://localhost:3000/api/v1/users/token
       params do
-        requires :phone_num, type: String
+        requires :token, type: String
       end
       post 'token',jbuilder:"v1/users/token" do
-        phone_num_encrypt = params[:phone_num]
-        user = User.find_by(phone_num:phone_num_encrypt)
-        AppLog.info("user:  #{user.attributes}")
-        if user.present?
-          # @token = cookies[phone_num_encrypt]
-          redis_token = phone_num_encrypt + user.unique_id
-          @token = $redis.get(redis_token)
-          if @token.present?
-            token = SecureRandom.urlsafe_base64
-            $redis.set(redis_token,@token)
-            # $redis.expire(redis_token,24*3600*15)
-            # cookies[phone_num_encrypt] = {value:token,expires:10.day.from_now}
-            user.update(token:token)
-          end
+        @token,user = current_user
+        if @token.present?
+          token = SecureRandom.urlsafe_base64
+          redis_token = @user.phone_num + @user.unique_id
+          $redis.set(redis_token,@token)
+          @user.update(token:token)
         else
           @token = nil
         end
@@ -67,15 +60,14 @@ module V1
 
       #http://localhost:3000/api/v1/users
       params do
-        requires :phone_num, type: String
+        requires :token, type: String
         requires :new_phone_num,type:String
         requires :user_name, type: String
         requires :head_portrait,type:String
       end
       put '',jbuilder:"v1/users/update" do 
-        phone_num_encrypt = params[:phone_num]
-        @user = User.find_by(phone_num:phone_num_encrypt)
-        if @user.present?
+        @token,@user = current_user
+        if @token.present?
           ActiveRecord::Base.transaction do
             @user.update(phone_num:params[:new_phone_num],user_name:params[:user_name])
             @user.images.destroy_all
