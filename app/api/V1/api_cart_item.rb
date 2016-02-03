@@ -59,6 +59,7 @@ module V1
         if @token.present?
           ActiveRecord::Base.transaction do
             @cart_items = CartItem.where("user_id = ?",@user.id).where(unique_id:unique_ids_json)
+            AppLog.info("ids:   #{@cart_items.pluck(:id)}") if @cart_items.present?
             @cart_items.destroy_all if @cart_items.present?
             @info = "success"
           end
