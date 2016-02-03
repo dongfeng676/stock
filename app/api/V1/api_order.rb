@@ -20,13 +20,13 @@ module V1
     version 'v1', using: :path
 
     resources 'orders' do
-      # http://localhost:3000/api/v1/orders/:token
+      # http://localhost:3000/api/v1/orders
       # bcb67d8860d033061090fbbf9f4c605c
       params do 
         requires :token,type: String
         requires :state,type: String
       end
-      get ":token",jbuilder:"v1/orders/index" do
+      get "",jbuilder:"v1/orders/index" do
         @token,@user = current_user
         if @token.present?
           @orders = Order.where("state = ?",params[:state])
