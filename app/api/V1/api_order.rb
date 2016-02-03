@@ -47,7 +47,8 @@ module V1
         if @token.present?
           address = Address.find_by(unique_id:params[:address_id])
           address_id = address.present? ? address.id : nil
-          @order = Order.create(state:0,phone_num:params[:phone_num],receive_name:params[:receive_name],products:params[:products],user_id:@user.id,address_id:address_id,order_money:params[:money])
+          products = body_parasm
+          @order = Order.create(state:0,phone_num:params[:phone_num],receive_name:params[:receive_name],products:products,user_id:@user.id,address_id:address_id,order_money:params[:money])
         end
       end
     end
