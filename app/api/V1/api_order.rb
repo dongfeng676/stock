@@ -35,7 +35,7 @@ module V1
 
       #http://localhost:3000/api/v1/orders
       params do 
-        requires :toekn,type:String
+        requires :token,type:String
         requires :receive_name,type:String
         requires :phone_num,type:String
         requires :address_id,type:String
