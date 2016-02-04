@@ -35,7 +35,16 @@ module V1
           address_id = address.present? ? address.id : nil
           products_json = params[:products].gsub("\\","")
           AppLog.info("products_json : #{products_json}")
-          @order = Order.create(state:0,phone_num:params[:phone_num],receive_name:params[:receive_name],products:products_json,user_id:@user.id,address_id:address_id,order_money:params[:money])
+          ActiveRecord::Base.transaction do 
+            @order = Order.create(state:0,phone_num:params[:phone_num],receive_name:params[:receive_name],products:products_json,user_id:@user.id,address_id:address_id,order_money:params[:money],unique_id:SecureRandom.urlsafe_base64)
+            product_arr = JSON.parse(products_json)
+            pro_unique_ids = product_arr.map do |p|
+              p["unique_id"]
+            end
+            pro_ids = Product.where(unique_id:pro_unique_ids).pluck(:id)
+            @cart_items = CartItem.where("user_id = ?",@user.id).where(product_id:pro_ids)
+            @cart_items.destroy_all if @cart_items.present?
+          end
         end
       end
 

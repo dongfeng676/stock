@@ -11,7 +11,7 @@ if @detail_category.present?
       json.name product.name.to_s
       json.desc product.desc.to_s
       json.image Image.get_images(product).first.to_s
-      json.unit if product.unit.present?? product.unit.name.to_s : ""
+      json.unit product.unit.present?? product.unit.name.to_s : ""
       json.stock_num product.stock_num.to_s
       json.price product.price.to_s
       json.old_price product.old_price.to_s

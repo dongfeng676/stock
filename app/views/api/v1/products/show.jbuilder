@@ -4,7 +4,7 @@ if @product.present?
     json.unique_id @product.unique_id.to_s
     json.name @product.name.to_s
     json.images Image.get_images(@product).to_s
-    json.unit if @product.unit.present?? @product.unit.name : ""
+    json.unit @product.unit.present?? @product.unit.name.to_s : ""
     json.stock_num @product.stock_num.to_s
     json.price @product.price.to_s
     json.old_price @product.old_price.to_s
