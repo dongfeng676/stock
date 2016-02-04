@@ -12,6 +12,7 @@ else
     json.complete_time order.complete_time.to_s
     json.address order.get_address.to_s
     if order.products.present?
+      json.pro_count JSON.parse(order.products).count
       json.products(JSON.parse(order.products)) do |pro_hash|
         json.unique_id pro_hash["unique_id"].to_s
         json.number pro_hash["number"].to_s
