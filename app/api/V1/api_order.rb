@@ -1,22 +1,6 @@
 module V1
   class ApiOrder < Grape::API
 
-    # helpers do 
-    #   def current_user
-    #     user_token = params[:token]
-    #     AppLog.info("user_token:    #{user_token}")
-    #     @user = User.find_by(token:user_token)
-    #     if @user.present?
-    #       AppLog.info("user_unique_id : #{@user.unique_id}")
-    #       redis_token = @user.phone_num.to_s + @user.unique_id.to_s
-    #       AppLog.info("redis_token:  #{redis_token}")
-    #       @token = $redis.get(redis_token)
-    #       AppLog.info("token is :#{@token}")
-    #     end
-    #     [@token,@user]
-    #   end
-    # end
-
     version 'v1', using: :path
 
     resources 'orders' do
@@ -29,7 +13,8 @@ module V1
       get "",jbuilder:"v1/orders/index" do
         @token,@user = current_user
         if @token.present?
-          @orders = Order.where("state = ?",params[:state])
+          state_json = JSON.parse(params[:state].gsub("\\",""))
+          @orders = Order.where(state:state_json)
         end
       end
 
@@ -51,6 +36,18 @@ module V1
           products_json = params[:products].gsub("\\","")
           AppLog.info("products_json : #{products_json}")
           @order = Order.create(state:0,phone_num:params[:phone_num],receive_name:params[:receive_name],products:products_json,user_id:@user.id,address_id:address_id,order_money:params[:money])
+        end
+      end
+
+      #http://localhost:3000/api/v1/orders/:unique_id
+      params do 
+        requires :token,type:String
+        requires :unique_id,type:String
+      end
+      get ":unique_id",jbuilder:"v1/orders/show" do
+        @token,@user = current_user
+        if @token.present?
+          @order = Order.find_by(unique_id:params[:unique_id])
         end
       end
     end

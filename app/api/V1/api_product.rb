@@ -12,6 +12,15 @@ module V1
       get ":unique_id", jbuilder: 'v1/products/show' do
         @product = Product.find_by(unique_id:params[:unique_id])
       end
+
+      #http://localhost:3000/api/v1/products/search
+      params do 
+        requires :key_word,type:String
+      end
+      post 'search',jbuilder:'v1/products/index' do
+        AppLog.info("key_word :#{params[:key_word]}")
+        @products = Product.where("name like ?","%#{params[:key_word]}%")
+      end
     end
   end
 end
