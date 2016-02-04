@@ -41,8 +41,11 @@ module V1
             pro_unique_ids = product_arr.map do |p|
               p["unique_id"]
             end
+            AppLog.info("pro_unique_ids:      #{pro_unique_ids}")
             pro_ids = Product.where(unique_id:pro_unique_ids).pluck(:id)
+            AppLog.info("pro_ids:      #{pro_ids}")
             @cart_items = CartItem.where("user_id = ?",@user.id).where(product_id:pro_ids)
+            AppLog.info("cart_items:   #{@cart_items.pluck(:id)}")
             @cart_items.destroy_all if @cart_items.present?
           end
         end
