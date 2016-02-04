@@ -8,8 +8,8 @@ else
     json.phone_num @order.phone_num.to_s  
     json.state @order.state.to_s
     json.created_at @order.created_at.to_s
-    json.delivery_time @order.delivery_time.strftime("%Y-%m-%d %H:%M:%S").to_s
-    json.complete_time @order.complete_time.strftime("%Y-%m-%d %H:%M:%S").to_s
+    json.delivery_time @order.delivery_time.present?? @order.delivery_time.strftime("%Y-%m-%d %H:%M:%S").to_s : ""
+    json.complete_time @order.complete_time.present?? @order.complete_time.strftime("%Y-%m-%d %H:%M:%S").to_s : ""
     json.address @order.get_address.to_s
     if @order.products.present?
       json.products(JSON.parse(@order.products)) do |pro_hash|
