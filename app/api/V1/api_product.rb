@@ -28,11 +28,13 @@ module V1
             AppLog.info("products:   #{@porducts.to_json}")
           else
             @sub_category = SubCategory.where("name like ?","%#{params[:key_word]}%").first
+            AppLog.info("sub_category:  #{@sub_category.inspect}")
             if @sub_category.present?
               @products = @sub_category.products
             else
               @detail_category = DetailCategory.where("name like ?","%#{params[:key_word]}%").first
-              @products = @detail_category.products
+              AppLog.info("detail_category:  #{@detail_category.inspect}")
+              @products = @detail_category.products if @detail_category.present?
             end
           end
         end
