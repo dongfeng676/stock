@@ -20,6 +20,10 @@ module V1
       post 'search',jbuilder:'v1/products/index' do
         AppLog.info("key_word :#{params[:key_word]}")
         @products = Product.where("name like ?","%#{params[:key_word]}%")
+        if @products.blank?
+          @category = Category.where("name like ?","%#{params[:key_word]}%").first
+          @products = @category.products
+        end
       end
     end
   end
