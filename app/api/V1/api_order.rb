@@ -14,7 +14,7 @@ module V1
         @token,@user = current_user
         if @token.present?
           state_json = JSON.parse(params[:state].gsub("\\",""))
-          @orders = Order.where(state:state_json)
+          @orders = Order.where(state:state_json).where("user_id = ?",@user.id)
         end
       end
 
