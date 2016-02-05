@@ -9,7 +9,7 @@ else
   json.populars(@popular_product) do |pop_product|
     json.unique_id pop_product.unique_id.to_s
     json.name pop_product.name.to_s
-    json.images Image.get_images(pop_product).first.to_s
+    json.image Image.get_images(pop_product).first.to_s
     if pop_product.unit.present?
       json.unit pop_product.unit.name.to_s
     else
