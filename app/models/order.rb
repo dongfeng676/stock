@@ -4,6 +4,10 @@ class Order < ActiveRecord::Base
 
   def get_address
     address = self.address
-    address.area.to_s + address.detail.to_s
+    if address.present?
+      address.area.to_s + address.detail.to_s
+    else
+      ""
+    end
   end
 end
