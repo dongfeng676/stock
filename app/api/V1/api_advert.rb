@@ -8,7 +8,7 @@ module V1
       # http://localhost:3000/api/v1/adverts
       get "", jbuilder: 'v1/adverts/index' do
         @adverts = Advert.all
-        @popular_product = Product.state.order(sale_count: :desc).limit(3)
+        @popular_product = Product.state.order(sale_count: :desc).limit(8)
       end
     end
   end
