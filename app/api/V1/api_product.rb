@@ -23,8 +23,10 @@ module V1
         if @products.blank?
           @category = Category.where("name like ?","%#{params[:key_word]}%").first
           AppLog.info("category:  #{@category.inspect}")
-          @products = @category.products if @categroy.present?
-          AppLog.info("products:   #{@porducts.to_json}")
+          if @category.present?
+            @products = @category.products
+            AppLog.info("products:   #{@porducts.to_json}")
+          end
         end
       end
     end
