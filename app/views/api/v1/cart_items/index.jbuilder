@@ -10,7 +10,7 @@ else
       json.product do
         json.unique_id cart_item.product.unique_id.to_s
         json.name cart_item.product.name.to_s
-        json.images Image.get_images(cart_item.product).to_s
+        json.image Image.get_images(cart_item.product).first.to_s
         json.unit if cart_item.product.unit.present?? cart_item.product.unit.name : ""
         json.stock_num cart_item.product.stock_num.to_s
         json.price cart_item.product.price.to_s
