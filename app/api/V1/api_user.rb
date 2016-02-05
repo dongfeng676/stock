@@ -69,9 +69,14 @@ module V1
         @token,@user = current_user
         if @token.present?
           ActiveRecord::Base.transaction do
-            @user.update(phone_num:params[:new_phone_num],user_name:params[:user_name])
-            @user.images.destroy_all
-            ImageUtil.base64_image(params[:head_portrait],"User",@user.id)
+            @user.phone_num = params[:new_phone_num] if params[:new_phone_num].present?
+            @user.user_name = params[:user_name] if params[:user_name].present?
+            @user.save
+            #@user.update(phone_num:params[:new_phone_num],user_name:params[:user_name])
+            if params[:head_portrait].present?
+              @user.images.destroy_all
+              ImageUtil.base64_image(params[:head_portrait],"User",@user.id)
+            end
             @flag = "1"
           end
         end
