@@ -62,7 +62,7 @@ module V1
       params do
         requires :token, type: String
         #requires :new_phone_num,type:String
-        #requires :user_name, type: String
+        requires :user_name, type: String
         #requires :head_portrait,type:String
       end
       put '',jbuilder:"v1/users/update" do 
