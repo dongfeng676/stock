@@ -10,7 +10,7 @@ module Sms
     #修改为您要发送的手机号码，多个号码用逗号隔开
     # mobile = '18301849268'
     #修改为您要发送的短信内容
-    text = '【云片网】您的验证码是'
+    text = '【要货啦】您的验证码是'
     rand = self.rand_code
     text += rand
 

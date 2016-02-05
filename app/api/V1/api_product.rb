@@ -27,14 +27,14 @@ module V1
             @products = @category.products
             AppLog.info("products:   #{@porducts.to_json}")
           else
-            @sub_category = SubCategory.where("name like ?","%#{params[:key_word]}%").first
-            AppLog.info("sub_category:  #{@sub_category.inspect}")
-            if @sub_category.present?
-              @products = @sub_category.products
+            sub_ids = SubCategory.where("name like ?","%#{params[:key_word]}%").pluck(:id)
+            AppLog.info("sub_ids:  #{sub_ids}")
+            if sub_ids.present?
+              @products = Product.where(sub_category_id:sub_ids)
             else
-              @detail_category = DetailCategory.where("name like ?","%#{params[:key_word]}%").first
-              AppLog.info("detail_category:  #{@detail_category.inspect}")
-              @products = @detail_category.products if @detail_category.present?
+              detail_ids = DetailCategory.where("name like ?","%#{params[:key_word]}%").pluck(:id)
+              AppLog.info("detail_ids:  #{detail_ids}")
+              @products = Product.where(detail_category_id:detail_ids)
             end
           end
         end
