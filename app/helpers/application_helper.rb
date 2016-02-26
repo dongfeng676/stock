@@ -7,7 +7,7 @@ module ApplicationHelper
     address_arr = []
     address_arr << ["请选择",""]
     Address.all.each do |address|
-      complete_address = address.province + " " + address.city + " " + address.region + " " + address.detail
+      complete_address = address.province.to_s + " " + address.city.to_s + " " + address.region.to_s + " " + address.detail.to_s
       address_arr << [complete_address,address.id]
     end
     address_arr
